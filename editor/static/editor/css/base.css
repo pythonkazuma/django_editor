@@ -1,0 +1,26 @@
+body {
+	background-color: black;
+}
+ 
+html, body, form {
+	height: 100%;
+}
+ 
+#menu-wrapper {
+	height: 5%;
+	width: 100%;
+}
+ 
+#main-wrapper {
+	height: 70%;
+	width: 100%;
+}
+ 
+#output-wrapper {
+	height: 25%;
+	width: 100%;
+}
+ 
+.scroll {
+	overflow: scroll;
+}

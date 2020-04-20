@@ -1,0 +1,61 @@
+{% extends "editor/base.html" %}
+{% block title %}
+  {{ form.file_name.value }}
+{% endblock %}
+{% block content %}
+<form action='{% url "editor:home" %}?dir_path={{ current_path }}' method="POST">
+ 
+<!-- Run、Saveなどのボタンエリア -->
+<div id="menu-wrapper">
+  <div class="container-fluid">
+    <span class="text-white">
+      {{ current_path }}\{{ form.file_name }}
+    </span>
+    <button type="submit" name="save" class="btn btn-secondary btn-lg">
+      Save
+    </button>
+    <button type="submit" name="run" class="btn btn-secondary btn-lg float-right">
+      Run
+    </button>
+  </div>
+</div>
+ 
+<!-- ファイル選択とコード入力欄 -->
+<div class="row" id="main-wrapper">
+ 
+  <!-- ファイル選択エリア -->
+  <div class="col-3 bg-faded scroll">
+  　　<div class="container-fluid">
+    <p>カレントパス:{{ current_path }}</p>
+    <p>ディレクトリ一覧</p>
+    {% for dir in dirs %}
+      <p>
+        <a href="{% url 'editor:home' %}?dir_path={{ dir.1 }}">{{ dir.0 }}</a>
+      </p>
+    {% endfor %}
+ 
+    <p>ファイル一覧</p>
+    {% for file in files %}
+      <p>
+        <a href="{% url 'editor:home' %}?dir_path={{ current_path }}&read_path={{ file.1 }}">{{ file.0 }}</a>
+      </p>
+    {% endfor %}
+    </div>
+  </div>
+ 
+  <!-- コード入力エリア -->
+  <div class="col-9 bg-faded">
+    {{ form.code }}
+  </div>
+ 
+</div>
+ 
+<!-- 出力表示エリア -->
+<div id="output-wrapper">
+  <textarea class="bg-faded w-100 h-100" readonly>{{ output }}</textarea>
+</div>
+ 
+{% csrf_token %}
+</form>
+ 
+{% endblock %}
