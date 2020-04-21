@@ -1,6 +1,6 @@
 # django_editor
 
-git install django
+git install django  
 
-cd django_editor
-python manage.py runserver
+cd django_editor  
+python manage.py runserver  
